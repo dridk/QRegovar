@@ -30,6 +30,8 @@ bool User::isValid() const
     return mId != -1;
 }
 
+
+
 quint32 User::id() const
 {
     return mId;

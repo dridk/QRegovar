@@ -13,6 +13,14 @@ MainWindow::MainWindow(QWidget *parent)
     // Init HMI
     buildMenu();
 
+    QString heure = "54";
+
+    QQuickWidget * view = new QQuickWidget;
+    view->rootContext()->setContextProperty("main", this);
+    view->setSource(QUrl("qrc:/Home.qml"));
+
+    setCentralWidget(view);
+
     mTabWidget = new QTabWidget(parent);
     mTabWidget->addTab(new QWidget(), tr("Home"));
 

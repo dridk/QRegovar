@@ -9,6 +9,7 @@ LoginDialog::LoginDialog(QWidget *parent)
     mBoxButton = new QDialogButtonBox();
     mPassword->setEchoMode(QLineEdit::Password);
     QGroupBox * loginBox = new QGroupBox;
+    loginBox->setAlignment(Qt::AlignHCenter);
 
     QStringList list;
     list<<"sacha"<<"boby"<<"olivier";
@@ -30,12 +31,17 @@ LoginDialog::LoginDialog(QWidget *parent)
 
 
 
+
     loginBox->setLayout(fLayout);
     loginBox->setTitle("Sign in");
 
     mLayout->addWidget(loginBox);
     //mLayout->addStretch();
     mLayout->addWidget(mBoxButton);
+
+    loginBox->setFixedWidth(400);
+    mLayout->setAlignment(loginBox, Qt::AlignVCenter|Qt::AlignHCenter);
+
 
 
     setLayout(mLayout);

@@ -1,11 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-#include <QMenuBar>
-#include <QVBoxLayout>
-#include <QTabWidget>
-#include <QMessageBox>
+#include <QtWidgets>
+#include <QQuickWidget>
+#include <QQmlContext>
 
 #include "core.h"
 #include "ui/loginwidget.h"
