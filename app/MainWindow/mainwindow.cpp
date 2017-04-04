@@ -16,15 +16,17 @@ MainWindow::MainWindow(QWidget *parent)
     mTabWidget = new QTabWidget(parent);
     mTabWidget->addTab(new QWidget(), tr("Home"));
 
-    LoginWidget *authent = new LoginWidget(parent);
-    connect( authent,
-             SIGNAL(acceptLogin(QString&,QString&,int&)),
-             this,
-             SLOT(checkAuthent(QString&,QString&)));
-    setCentralWidget(authent);
+//    LoginWidget *authent = new LoginWidget(parent);
+//    connect( authent,
+//             SIGNAL(acceptLogin(QString&,QString&,int&)),
+//             this,
+//             SLOT(checkAuthent(QString&,QString&)));
+//    setCentralWidget(authent);
 
 
     restoreSettings();
+
+    login();
 
 }
 
@@ -44,6 +46,17 @@ void MainWindow::writeSettings()
     settings.setValue("size", size());
     settings.setValue("pos", pos());
     settings.endGroup();
+}
+
+void MainWindow::login()
+{
+
+    LoginDialog dialog;
+    if (dialog.exec())
+    {
+        qDebug()<<"Connexion..";
+    }
+
 }
 
 void MainWindow::restoreSettings()

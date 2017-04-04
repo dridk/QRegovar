@@ -9,6 +9,7 @@
 
 #include "core.h"
 #include "ui/loginwidget.h"
+#include "ui/logindialog.h"
 
 class MainWindow : public QMainWindow
 {
@@ -26,6 +27,7 @@ public:
     void restoreSettings();
     void writeSettings();
 
+    void login();
 
 
 public slots:
