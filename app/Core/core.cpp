@@ -29,9 +29,7 @@ void Core::init()
     mApiManager->init();
 
     // Init model
-    mUser = new User();
-    mUser->id(1);
-    mUser->firstname("Olivier");
-    mUser->lastname("Gueudelot");
+    mUser = new User(1, "Olivier","Gueudelot");
+
 }
 

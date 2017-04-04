@@ -22,15 +22,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += core.cpp \
-    model/user.cpp \
-    tools/request.cpp \
-    managers/restapimanager.cpp
+include(model/model.pri)
+include(managers/managers.pri)
+include(tools/tools.pri)
 
-HEADERS += core.h \
-    model/user.h \
-    tools/request.h \
-    managers/restapimanager.h
+
+SOURCES += core.cpp
+HEADERS += core.h
+
+
+
+
 unix {
     target.path = /usr/lib
     INSTALLS += target
