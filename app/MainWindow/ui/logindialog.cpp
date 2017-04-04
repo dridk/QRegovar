@@ -29,14 +29,17 @@ LoginDialog::LoginDialog(QWidget *parent)
     fLayout->addRow(tr("Password"), mPassword);
 
 
-    loginBox->setLayout(fLayout);
 
+    loginBox->setLayout(fLayout);
+    loginBox->setTitle("Sign in");
 
     mLayout->addWidget(loginBox);
-    mLayout->addStretch();
+    //mLayout->addStretch();
     mLayout->addWidget(mBoxButton);
 
+
     setLayout(mLayout);
+
 
     setWindowTitle("Login");
 
