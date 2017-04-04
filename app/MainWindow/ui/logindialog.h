@@ -7,6 +7,9 @@ class LoginDialog : public QDialog
 public:
     LoginDialog(QWidget * parent = 0);
 
+    QString username() const;
+    QString password() const;
+
 private:
     QComboBox * mUsername;
     QLineEdit * mPassword;

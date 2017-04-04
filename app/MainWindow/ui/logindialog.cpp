@@ -47,3 +47,13 @@ LoginDialog::LoginDialog(QWidget *parent)
     connect(mBoxButton,SIGNAL(rejected()),this,SLOT(reject()));
 
 }
+
+QString LoginDialog::username() const
+{
+    return mUsername->currentText();
+}
+
+QString LoginDialog::password() const
+{
+    return mUsername->currentText();
+}

@@ -54,7 +54,7 @@ void MainWindow::login()
     LoginDialog dialog;
     if (dialog.exec())
     {
-        qDebug()<<"Connexion..";
+       checkAuthent(dialog.username(), dialog.password());
     }
 
 }
