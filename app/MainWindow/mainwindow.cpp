@@ -11,25 +11,31 @@ MainWindow::MainWindow(QWidget *parent)
     mRegovar->init();
 
     // Init HMI
+
+
+    mView  = new QTableView;
+    mModel = new UserModel;
+
+    mView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    mView->horizontalHeader()->setStretchLastSection(true);
+
+    mView->setModel(mModel);
+
+    setCentralWidget(mView);
+
+
     buildMenu();
 
-    QString heure = "54";
-
-    QQuickWidget * view = new QQuickWidget;
-    view->rootContext()->setContextProperty("main", this);
-    view->setSource(QUrl("qrc:/Home.qml"));
-
-    setCentralWidget(view);
 
     mTabWidget = new QTabWidget(parent);
     mTabWidget->addTab(new QWidget(), tr("Home"));
 
-//    LoginWidget *authent = new LoginWidget(parent);
-//    connect( authent,
-//             SIGNAL(acceptLogin(QString&,QString&,int&)),
-//             this,
-//             SLOT(checkAuthent(QString&,QString&)));
-//    setCentralWidget(authent);
+    //    LoginWidget *authent = new LoginWidget(parent);
+    //    connect( authent,
+    //             SIGNAL(acceptLogin(QString&,QString&,int&)),
+    //             this,
+    //             SLOT(checkAuthent(QString&,QString&)));
+    //    setCentralWidget(authent);
 
 
     restoreSettings();
@@ -62,7 +68,7 @@ void MainWindow::login()
     LoginDialog dialog;
     if (dialog.exec())
     {
-       checkAuthent(dialog.username(), dialog.password());
+        checkAuthent(dialog.username(), dialog.password());
     }
 
 }
@@ -82,8 +88,10 @@ void MainWindow::buildMenu()
 
     mMenuBar = new QMenuBar(0);
 
+
+
     // Regovar menu
-    QAction *homeAct = new QAction(tr("&Home"), this);
+    QAction *homeAct = new QAction(tr("&Home"));
     homeAct->setShortcuts(QKeySequence::New);
     homeAct->setStatusTip(tr("Go to the start screen"));
 
@@ -112,14 +120,14 @@ void MainWindow::buildMenu()
 
 
     // TODO : loading "module menu" dynamicaly from library
-//    menuBar->addMenu(tr("&Project"));
-//    menuBar->addMenu(tr("&Subject"));
-//    menuBar->addMenu(tr("&Pipeline"));
+    //    menuBar->addMenu(tr("&Project"));
+    //    menuBar->addMenu(tr("&Subject"));
+    //    menuBar->addMenu(tr("&Pipeline"));
 
     // TODO : these generics menus may be complete by dynamic module
-//    menuBar->addMenu(tr("&Statistics"));
-//    menuBar->addMenu(tr("&Tools"));
-//    menuBar->addMenu(tr("&Administration"));
+    //    menuBar->addMenu(tr("&Statistics"));
+    //    menuBar->addMenu(tr("&Tools"));
+    //    menuBar->addMenu(tr("&Administration"));
 
     // Help menu
     QAction *beginnerGuideAct = new QAction(tr("&Beginner's guide"), this);
@@ -140,6 +148,8 @@ void MainWindow::buildMenu()
     helpMenu->addAction(aboutAct);
 
 
+    mMenuBar->addAction("POPULATE", mModel, SLOT(ask()));
+
     // Display the menu in the main window
     setMenuBar(mMenuBar);
 }
@@ -152,20 +162,20 @@ void MainWindow::buildMenu()
 void MainWindow::about()
 {
     // TEST connect & lamda expression
-//    Request* test = Request::get("/ref");
-//    connect(test, Request::jsonReceived, [](const QJsonDocument& json)
-//    {
-//        qDebug() << "salut !";
-//    });
+    //    Request* test = Request::get("/ref");
+    //    connect(test, Request::jsonReceived, [](const QJsonDocument& json)
+    //    {
+    //        qDebug() << "salut !";
+    //    });
     QMessageBox::about(this, tr("About Regovar"),
-        tr("<b>Regovar</b> application is the best. "
-           "As you can see with this perfect dialog box."));
+                       tr("<b>Regovar</b> application is the best. "
+                          "As you can see with this perfect dialog box."));
 }
 
 void MainWindow::checkAuthent(QString login, QString password)
 {
     QMessageBox::about(this, tr("Authent Success"),
-        tr("Hello <b>%1</b>. You password is \"%2\" ! ... oups it's supposed to be a secret :P\n===\n").arg(login, password) );
+                       tr("Hello <b>%1</b>. You password is \"%2\" ! ... oups it's supposed to be a secret :P\n===\n").arg(login, password) );
 }
 
 

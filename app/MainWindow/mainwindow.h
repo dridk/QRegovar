@@ -8,6 +8,7 @@
 #include "core.h"
 #include "ui/loginwidget.h"
 #include "ui/logindialog.h"
+#include "model/UserModel.h"
 
 class MainWindow : public QMainWindow
 {
@@ -34,6 +35,10 @@ public slots:
 
 protected:
     void buildMenu();
+
+private:
+    QTableView * mView;
+    UserModel * mModel;
 
 
     QMenuBar *mMenuBar;
